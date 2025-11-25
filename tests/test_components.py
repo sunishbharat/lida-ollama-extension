@@ -1,6 +1,7 @@
 from lida.components import Manager
 from llmx import llm, TextGenerationConfig
 import os
+import logging
 OLLAMA_LLM_MODEL = "llama3.1:8b"
 #lida = Manager(text_gen=llm("openai"))
 lida = Manager(text_gen=llm(
@@ -13,9 +14,9 @@ lida = Manager(text_gen=llm(
 cars_data_url = "https://raw.githubusercontent.com/uwdata/draco/master/data/cars.csv"
 
 def print_l(items:list):
-    print("-"*20)
+    logging.info("*"*20)
     for item in items:
-        print(f"{item=}\n"+"-"*20)
+        logging.info(f"{item=}\n"+"-"*20)
 
 def test_summarizer():
     textgen_config = TextGenerationConfig(
@@ -48,7 +49,7 @@ def test_vizgen():
     textgen_config = TextGenerationConfig(
         n=1,
         temperature=0.1,
-        use_cache=True,
+        use_cache=False,
         max_tokens=None)
     summary = lida.summarize(
         cars_data_url,
