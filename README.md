@@ -2,7 +2,7 @@
 
 This repository extends [Microsoft lida](https://github.com/microsoft/lida) to natively support automated data summarization, visualization using local Ollama language models. With this enhancement, LIDA users are no longer restricted to cloud-based LLM providers—charts, summaries, and infographics can now be generated locally on your own machine using any LLM supported by Ollama.
 
-Based on testing, llama3.1:8b produces the most reliable output for JSON-format generation. Other models showed inconsistencies in producing valid JSON, causing processing failures.
+Based on testing, **llama3.1:8b** produces the most reliable output for JSON-format generation. Other models with fewer parameters (<8b) showed inconsistencies in producing valid JSON, causing processing failures.
 
 
 ### Additional Supported LLM Providers
@@ -11,9 +11,9 @@ Based on testing, llama3.1:8b produces the most reliable output for JSON-format 
 
 > **Note:** Ollama support is enabled via the `llmx-ollama-extension` repository. Make sure to install this extension for local model compatibility.
 
-## Setup
+### Setup
 
-Clone [llmx-ollama-extension](https://github.com/sunishbharat/llmx-ollama-extension) and install it:
+Clone [lida-ollama-extension](https://github.com/sunishbharat/lida-ollama-extension):
 
 ```
 git clone <this_repo>
