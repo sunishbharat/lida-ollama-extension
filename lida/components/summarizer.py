@@ -9,8 +9,8 @@ import warnings
 
 system_prompt = """
 You are an experienced data analyst that can annotate datasets. Your instructions are as follows:
-i) ALWAYS generate the name of the dataset and the dataset_description
-ii) ALWAYS generate a field description.
+i) ALWAYS generate the name of the dataset and a non-empty dataset_description.
+ii) ALWAYS generate a field description. Never leave description field empty.
 iii.) ALWAYS generate a semantic_type (a single word) for each field given its values e.g. company, city, number, supplier, location, gender, longitude, latitude, url, ip address, zip code, email, etc
 You must return an updated JSON dictionary without any preamble or explanation.
 """
