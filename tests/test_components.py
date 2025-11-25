@@ -1,11 +1,21 @@
 from lida.components import Manager
 from llmx import llm, TextGenerationConfig
 import os
-lida = Manager(text_gen=llm("openai"))
+OLLAMA_LLM_MODEL = "llama3.1:8b"
+#lida = Manager(text_gen=llm("openai"))
+lida = Manager(text_gen=llm(
+        provider="ollama",
+        model= OLLAMA_LLM_MODEL,
+        model_name = OLLAMA_LLM_MODEL
+        ))
 
 
 cars_data_url = "https://raw.githubusercontent.com/uwdata/draco/master/data/cars.csv"
 
+def print_l(items:list):
+    print("-"*20)
+    for item in items:
+        print(f"{item=}\n"+"-"*20)
 
 def test_summarizer():
     textgen_config = TextGenerationConfig(
@@ -45,6 +55,7 @@ def test_vizgen():
         textgen_config=textgen_config, summary_method="default")
 
     goals = lida.goals(summary, n=2, textgen_config=textgen_config)
+    print_l(goals)
     charts = lida.visualize(
         summary=summary,
         goal=goals[0],
@@ -64,9 +75,11 @@ def test_vizgen():
     assert len(first_chart.raster) > 0
 
     # Test saving the raster image of the first chart
-    temp_file_path = "temp_image.png"
+    temp_file_path = r".\temp_image.png"
     first_chart.savefig(temp_file_path)
     # Ensure the image is saved correctly
     assert os.path.exists(temp_file_path)
     # Clean up
     os.remove(temp_file_path)
+if __name__ == "__main__":
+    test_vizgen()
