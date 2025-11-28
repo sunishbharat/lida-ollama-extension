@@ -2,6 +2,9 @@ from lida.components import Manager
 from llmx import llm, TextGenerationConfig
 import os
 import logging
+import matplotlib.pyplot as plt
+import matplotlib.image as pimg
+
 OLLAMA_LLM_MODEL = "llama3.1:8b"
 #lida = Manager(text_gen=llm("openai"))
 lida = Manager(text_gen=llm(
@@ -78,9 +81,14 @@ def test_vizgen():
     # Test saving the raster image of the first chart
     temp_file_path = r".\temp_image.png"
     first_chart.savefig(temp_file_path)
+    # Display the chart
+    img = pimg.imread(temp_file_path)
+    plt.imshow(img)
+    plt.show()
     # Ensure the image is saved correctly
     assert os.path.exists(temp_file_path)
     # Clean up
     os.remove(temp_file_path)
+	
 if __name__ == "__main__":
     test_vizgen()
