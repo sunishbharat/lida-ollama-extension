@@ -1,9 +1,9 @@
 
 ## About This Fork
 
-This repository extends [Microsoft lida](https://github.com/microsoft/lida) to natively support automated data summarization, visualization using local Ollama language models. With this enhancement, LIDA users are no longer restricted to cloud-based LLM providers—charts, summaries, and infographics can now be generated locally on your own machine using any LLM supported by Ollama.
+This repository extends [Microsoft lida](https://github.com/microsoft/lida) by adding native support for automated data summarization and visualization using local Ollama large language models. With this enhancement, lida users are no longer limited to cloud-based LLM providers. Charts, summaries and infographics can now be generated locally on your own machine using any LLMs supported by [Ollama](https://ollama.com/library?sort=newest).
 
-Based on testing, **llama3.1:8b** produces the most reliable output for JSON-format generation. Other models with fewer parameters (<8b) showed inconsistencies in producing valid JSON, causing processing failures.
+Testing showed that **llama3.1:8b** delivers the most reliable JSON-formatted output. Models with fewer parameters (<8b) were less consistent in producing valid JSON, leading to processing failures.
 
 
 ### Additional Supported LLM Providers
@@ -17,8 +17,8 @@ Based on testing, **llama3.1:8b** produces the most reliable output for JSON-for
 Clone [lida-ollama-extension](https://github.com/sunishbharat/lida-ollama-extension):
 
 ```
-git clone <this_repo>
-cd <this_repo>
+git clone https://github.com/sunishbharat/lida-ollama-extension
+cd lida-ollama-extension
 ```
 
 ### Remove existing LLMX (if installed) in environment
@@ -52,8 +52,10 @@ pip install -e .
 ----------------------------------------
 Return to your lida repo folder:
 ```
-cd ../lida
+cd ../lida-ollama-extension
+
 pip install -e .
+
 pip install -r requirements.txt
 ```
 Install any extras or dev dependencies if needed:
@@ -61,15 +63,19 @@ Install any extras or dev dependencies if needed:
 pip install lida[dev]
 ```
 
-### Install and run Ollama
-If you haven’t installed it yet:
-```
-curl -fsSL https://ollama.com/install.sh | sh
+### Install [ollama](https://ollama.com/)
 
-```
-### Run Ollama
+#### After installing ollama, run ollama
 ```
 ollama serve
+```
+#### To list available models:
+```
+ollama list
+```
+#### To download and run llama3.1:8b model
+```
+ollama run llama3.1:8b
 ```
 
 ### Usage
